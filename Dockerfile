@@ -1,6 +1,10 @@
-FROM php:8.2-cli-alpine
+FROM php:8.2-cli
 
-RUN docker-php-ext-install pdo pdo_mysql
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    libzip-dev \
+    && docker-php-ext-install pdo pdo_mysql zip
 
 WORKDIR /app
 COPY . .
